@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.venfavapps" path="/org/gnome/shell/extensions/venfavapps/">
+    <key name="position-offset" type="i">
+      <default>1</default>
+    </key>
+    <key name="show-activities-button" type="b">
+      <default>true</default>
+    </key>
+    <key name="icon-size" type="i">
+      <default>43</default>
+    </key>
+    <key name="number-of-columns" type="i">
+      <default>4</default>
+    </key>
+  </schema>
+</schemalist>
