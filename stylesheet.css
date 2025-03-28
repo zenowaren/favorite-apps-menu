@@ -9,3 +9,7 @@
   background-color: -st-accent-color;
   border-radius: 12px;
 }
+
+.popup-menu {
+    min-width: 50px;
+}
