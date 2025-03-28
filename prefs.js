@@ -113,7 +113,7 @@ export default class FavoritesPreferences extends ExtensionPreferences {
         groupGrid.add(numberOfColumns);
         
         const nocAdjustment = new Gtk.Adjustment({
-            lower: 4,
+            lower: 1,
             upper: 10,
             step_increment: 1,
             page_increment: 1,
