@@ -231,7 +231,7 @@ const Indicator = GObject.registerClass(
                 }
             });  
         }else {
-            const menuItem = new PopupMenu.PopupMenuItem('Your favorite apps appear here. Pin an app to Dash.');
+            const menuItem = new PopupMenu.PopupMenuItem('Your favorite apps appear here. Pin an app to the Dash.');
             this._itemSection.actor.add_child(menuItem);
         }
     }
