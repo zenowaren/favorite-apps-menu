@@ -12,7 +12,6 @@ import * as AppFavorites from "resource:///org/gnome/shell/ui/appFavorites.js";
 import {AppMenu} from 'resource:///org/gnome/shell/ui/appMenu.js';
 import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 
-const APP_NORMAL_OPACITY = 255;
 const APP_LOW_OPACITY = 125;
 
 export default class FavoriteAppsMenu extends Extension {      
@@ -67,13 +66,12 @@ export default class FavoriteAppsMenu extends Extension {
 const PanelMenuAppItem = GObject.registerClass(
 class PanelMenuAppItem extends St.Bin {
     _init(app, iconSize) {
-        super._init();
-
-        this.set_track_hover(true);
-        this.set_reactive(true);
-        this.set_can_focus(true);
-        this.set_style_class_name('button-view');
-        this.set_opacity(APP_NORMAL_OPACITY);
+        super._init({
+            reactive : true,
+            can_focus : true,
+            track_hover : true,
+            style_class: 'button-view',
+        });
 
         this._delegate = this;
         this._draggable = DND.makeDraggable(this, {dragActorOpacity: APP_LOW_OPACITY});
