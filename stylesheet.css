@@ -1,11 +1,11 @@
 .button-view {
   margin: 0px;
-  padding: 4px;
+  padding: 3px;
 }
 
 .button-view-hover {
   margin: 0px;
-  padding: 4px;
+  padding: 3px;
   background-color: -st-accent-color;
   border-radius: 12px;
 }
