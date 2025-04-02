@@ -104,7 +104,7 @@ const Indicator = GObject.registerClass(
     _init(settings) {
         super._init(0.5, this.uuid); 
 
-        this.add_child(new St.Icon({icon_name: 'view-more-horizontal-symbolic.svg', style_class: 'system-status-icon'}));
+        this.add_child(new St.Icon({icon_name: 'view-more-horizontal-symbolic', style_class: 'system-status-icon'}));
 
         this._itemSection = new PopupMenu.PopupMenuSection();
         this.menu.addMenuItem(this._itemSection);
