@@ -8,7 +8,7 @@
       <default>true</default>
     </key>
     <key name="icon-size" type="i">
-      <default>43</default>
+      <default>45</default>
     </key>
     <key name="number-of-columns" type="i">
       <default>4</default>
