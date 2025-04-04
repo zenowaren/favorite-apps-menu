@@ -4,20 +4,30 @@ import Gtk from "gi://Gtk";
 
 import {ExtensionPreferences} from "resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js";
 
+const actionSelection = ["Off", "Favorite Apps Menu", "Gnome Applications", "Gnome Activities", "Power Menu"];
+
 export default class FavoritesPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         const settings = this.getSettings();
+        window.set_default_size(600, 660);
+        
         const page = new Adw.PreferencesPage();
+
         const group = new Adw.PreferencesGroup({
             title: "Panel",
         });
 
         const groupGrid = new Adw.PreferencesGroup({
-            title: "Grid View",
-        });        
+            title: "View",
+        });
+
+        const groupMouse = new Adw.PreferencesGroup({
+            title: "Mouse",
+        });       
 
         page.add(group);     
         page.add(groupGrid); 
+        page.add(groupMouse); 
 
         //Position Offset
         const positionOffset = new Adw.ActionRow({
@@ -72,7 +82,7 @@ export default class FavoritesPreferences extends ExtensionPreferences {
         rowActivities.add_suffix(toggleActivities);
         rowActivities.activatable_widget = toggleActivities;      
 
-        //Icon Sİze
+        //Icon Size
         const iconSize = new Adw.ActionRow({
             title: "Icon Size",
         });  
@@ -137,6 +147,72 @@ export default class FavoritesPreferences extends ExtensionPreferences {
         settings.bind("number-of-columns", nocSpinButton, "value", Gio.SettingsBindFlags.DEFAULT);
         numberOfColumns.add_suffix(nocSpinButton);
         numberOfColumns.activatable_widget = nocSpinButton;
+
+        //Left Mouse Button Action
+        const leftMouseClick = new Adw.ActionRow({
+            title: "Left Button",
+        });  
+
+        groupMouse.add(leftMouseClick);
+        
+        const dropdownLMB = new Gtk.DropDown({
+            valign: Gtk.Align.CENTER,
+            model: Gtk.StringList.new(actionSelection),
+            selected: settings.get_int("left-mouse-button"),
+        });
+        
+        dropdownLMB.connect('notify::selected', widget => {
+            settings.set_int('left-mouse-button', widget.selected);
+        });
+        
+        settings.bind("left-mouse-button", dropdownLMB, "selected", Gio.SettingsBindFlags.DEFAULT);
+
+        leftMouseClick.add_suffix(dropdownLMB);
+        leftMouseClick.activatable_widget = dropdownLMB; 
+
+        //Middle Mouse Button Action
+        const middleMouseClick = new Adw.ActionRow({
+            title: "Middle Button",
+        });  
+
+        groupMouse.add(middleMouseClick);
+        
+        const dropdownMMB = new Gtk.DropDown({
+            valign: Gtk.Align.CENTER,
+            model: Gtk.StringList.new(actionSelection),
+            selected: settings.get_int("middle-mouse-button"),
+        });
+        
+        dropdownMMB.connect('notify::selected', widget => {
+            settings.set_int('middle-mouse-button', widget.selected);
+        });
+        
+        settings.bind("middle-mouse-button", dropdownMMB, "selected", Gio.SettingsBindFlags.DEFAULT);
+
+        middleMouseClick.add_suffix(dropdownMMB);
+        middleMouseClick.activatable_widget = dropdownMMB; 
+
+        //Right Mouse Button Action
+        const rightMouseClick = new Adw.ActionRow({
+            title: "Right Button",
+        });  
+
+        groupMouse.add(rightMouseClick);
+        
+        const dropdownRMB = new Gtk.DropDown({
+            valign: Gtk.Align.CENTER,
+            model: Gtk.StringList.new(actionSelection),
+            selected: settings.get_int("right-mouse-button"),
+        });
+        
+        dropdownRMB.connect('notify::selected', widget => {
+            settings.set_int('right-mouse-button', widget.selected);
+        });
+        
+        settings.bind("right-mouse-button", dropdownRMB, "selected", Gio.SettingsBindFlags.DEFAULT);
+
+        rightMouseClick.add_suffix(dropdownRMB);
+        rightMouseClick.activatable_widget = dropdownRMB; 
 
         window.add(page);
     }
